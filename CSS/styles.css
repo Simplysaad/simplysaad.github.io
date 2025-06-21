@@ -1,0 +1,41 @@
+body {
+    font-family: "Poppins", sans-serif;
+}
+
+.skill-badge {
+    background-color: #1ca51b;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-weight: 600;
+    box-shadow: 0 4px 6px rgba(13, 110, 253, 0.3);
+    transition: transform 0.3s ease;
+    cursor: default;
+    user-select: none;
+}
+
+.skill-badge:hover {
+    transform: scale(1.1);
+}
+
+.project-img {
+    height: 180px;
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
+}
+
+.card {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+}
+
+@media (max-width: 576px) {
+    .skill-badge {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+    }
+}
