@@ -14,10 +14,29 @@ const projects = [
         description:
             "a simple tool to convert long urls into short, more memorable links and also helps with tracking",
         tech: ["EJS", "Node.js", "Express"],
-        repo: "https://github.com/simplysaad/short.en",
-        live: "https://short-en.onrender.com",
+
+        repo: "https://github.com/simplysaad/aleeyah-perfumes",
+        live: "https://simplysaad.github.io/aleeyah-perfumes",
         img: "IMG/link-shortener.png"
     },
+    {
+        title: "Aleeyah perfumes",
+        tech: ["HTML", "CSS", "javascript", "ES6+"],
+        description:
+            "static website for a small business that deals in perfumes",
+        repo: "https://github.com/simplysaad/aleeyah-perfumes",
+        live: "https://simplysaad.github.io/aleeyah-perfumes",
+        img: "IMG/perfume.png"
+    },
+    {
+        title: "BetterFuture NGO",
+        tech: ["HTML", "CSS", "javascript", "ES6+"],
+        description:
+            "static website for an NGO that helps disabled individuals access meaningful education in africa",
+        repo: "https://github.com/simplysaad/betterfuture",
+        live: "https://simplysaad.github.io/betterfuture",
+        img: "IMG/disabled.png"
+    }
     //, {
     //     title: "Real-time Chat App",
     //     description:
