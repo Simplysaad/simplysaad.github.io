@@ -12,11 +12,11 @@ const projects = [
     {
         title: "short-en link shortener",
         description:
-            "a simple tool to convert long urls into short, more memorable links and also helps with tracking",
+            "a simple tool to convert long urls into short, more memorable, trackable links",
         tech: ["EJS", "Node.js", "Express"],
 
-        repo: "https://github.com/simplysaad/aleeyah-perfumes",
-        live: "https://simplysaad.github.io/aleeyah-perfumes",
+        repo: "https://github.com/simplysaad/short.en",
+        live: "https://short-en.onrender.com/",
         img: "IMG/link-shortener.png"
     },
     {
