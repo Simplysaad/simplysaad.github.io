@@ -1,5 +1,21 @@
 const projects = [
     {
+        title: "BiographyHub Blog website",
+        description:
+            "Built a blog website that automatically generates fresh daily tech posts using Gemini API and schedules them with Cron jobs. The system also shares each post instantly on Twitter via the Twitter API, ensuring constant engagement and up-to-date content without manual effort.",
+        tech: [
+            "MongoDB",
+            "Express",
+            "React",
+            "Node.js",
+            "Twitter API",
+            "Gemini AI"
+        ],
+        repo: "https://github.com/simplysaad/BiographyHub",
+        live: "https://BiographyHub.onrender.com",
+        img: "https://placehold.co/400/green/white?text=BiographyHub"
+    },
+    {
         title: "CentralMarket E-Commerce MERN App",
         description:
             "Full-stack e-commerce platform with cart, checkout & admin panel.",
