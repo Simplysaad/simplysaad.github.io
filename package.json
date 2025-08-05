@@ -1,8 +1,8 @@
 {
   "name": "portfolio",
   "private": true,
-  "homepage": "https://simplysaad.github.io",
-  "version": "0.0.0",
+  "homepage": "https://simplysaad.github.io/",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
