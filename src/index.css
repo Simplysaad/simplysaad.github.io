@@ -16,7 +16,7 @@
 
     --card: hsl(0 0% 100%);
 
-    --primary: hsl(130 47% 60%);
+    --primary: hsl(140 60% 40%);
     --primary-foreground: hsl(90 40% 98%);
 
     --border: hsl(104 32% 91%);
@@ -60,6 +60,10 @@
 }
 
 @utility btn-primary {
-  margin: 100px 0 ;
-  @apply bg-primary text-background my-52 px-6 py-2 rounded-full font-medium transition-all duration-300 hover:shadow-[0_0_10px_rgba(139,92,246,0.5)];
+  /* margin: 100px 0; */
+  @apply bg-primary text-background px-6 py-2 rounded-full font-medium transition-all duration-300 hover:shadow-[0_0_10px_rgba(139,246,92,0.5)];
+}
+@utility btn-outline {
+  /* margin: 100px 0; */
+  @apply border-primary border text-primary px-6 py-2 rounded-full font-medium transition-all duration-300 hover:shadow-[0_0_10px_rgba(139,246,92,0.5)];
 }

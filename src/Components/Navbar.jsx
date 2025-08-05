@@ -10,27 +10,27 @@ const Navbar = () => {
   const options = [
     {
       title: "home",
-      href: "#hero",
+      href: "#heroSection",
     },
     {
       title: "about",
-      href: "#about",
+      href: "#aboutSection",
     },
     {
       title: "skills",
-      href: "#skills",
+      href: "#skillsSection",
     },
     {
       title: "projects",
-      href: "#projects",
+      href: "#projectsSection",
     },
     {
       title: "contact",
-      href: "#contact",
+      href: "#contactSection",
     },
   ];
   return (
-    <nav className="fixed w-full z-40 py-6">
+    <nav className="fixed w-full md:backdrop-blur z-40 py-6">
       {/* Desktop nav */}
       <div className="container flex justify-between items-center">
         <div className="nav-brand text-2xl font-bold">
@@ -41,15 +41,15 @@ const Navbar = () => {
         <ul className="nav-options hidden align-center md:flex space-x-3">
           {options.map((option, key) => (
             <li key={key}>
-              <NavLink
-                to={option.href}
+              <a
+                href={option.href}
                 className={clsx(
                   "capitalize focus:text-primary active:text-primary transition-colors duration-300 hover:text-primary",
                   location.hash === option.href ? "text-primary" : ""
                 )}
               >
                 {option.title}
-              </NavLink>
+              </a>
             </li>
           ))}
         </ul>
