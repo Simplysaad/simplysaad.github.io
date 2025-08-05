@@ -4,6 +4,7 @@ import Navbar from "../Components/Navbar";
 import HeroSection from "../Components/HeroSection";
 import AboutSection from "../Components/AboutSection";
 import ProjectSection from "../Components/ProjectSection";
+import SkillsSection from "../Components/SkillsSection";
 
 const Home = () => {
   return (
@@ -19,6 +20,7 @@ const Home = () => {
       {/* Main content */}
       <HeroSection />
       <AboutSection />
+      <SkillsSection />
       <ProjectSection />
     </div>
   );

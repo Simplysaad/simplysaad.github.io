@@ -66,10 +66,7 @@ const projects = [
 
 const ProjectSection = () => {
   return (
-    <section
-      id="projectsSection"
-      className="min-h-screen py-16 flex justify-center items-center"
-    >
+    <section id="projectsSection" className="section">
       <div className="container mx-auto max-w-5xl ">
         <div className="heading text-center flex flex-col gap-3">
           <h2 className="text-3xl md:text-4xl font-bold my-4">
@@ -94,22 +91,22 @@ const ProjectSection = () => {
                   alt={project.title}
                 />
               </div>
+              <div className="tags my-4  flex gap-3 flex-wrap">
+                {project.tags.map((tag) => (
+                  <span
+                    key={"tag-" + key}
+                    className="tag border text-primary px-2 rounded-full"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
               <div className="card-info text-start">
-                <div className="tags my-4  flex gap-3 flex-wrap">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={key}
-                      className="tag border border-primary text-primary py-1 px-2 rounded-full"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
                 <div className="text-center my-4">
-                  <h3 className="text-2xl">{project.title}</h3>
+                  <h3 className="text-2xl my-4 font-bold capitalize">{project.title}</h3>
                   <p className="">{project.description}</p>
                 </div>
-                <div className="links flex p-2 gap-2">
+                <div className="links flex p-2 justify-center gap-2">
                   <a
                     href={project.live}
                     target="_blank"

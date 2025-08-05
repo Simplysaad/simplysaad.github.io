@@ -11,10 +11,12 @@
 }
 @layer base {
   :root {
-    --background: hsl(135, 40%, 98%);
+    --background: hsl(135, 40%, 85%);
     --foreground: hsl(102 47% 4%);
 
-    --card: hsl(0 0% 100%);
+    /* --card: hsl(0 0% 90%); */
+    --card: hsl(102 47% 90%);
+
 
     --primary: hsl(140 60% 40%);
     --primary-foreground: hsl(90 40% 98%);
@@ -26,7 +28,7 @@
     --foreground: hsl(90 40% 98%);
     --background: hsl(102 47% 4%);
 
-    --card: hsl(222 47% 8%);
+    --card: hsl(102 47% 8%);
 
     --primary: hsl(130 65% 65%);
     --primary-foreground: hsl(213 31% 91%);
@@ -52,6 +54,7 @@
   padding-inline: 2rem;
 }
 
+
 @utility card-hover {
   @apply transition-transform duration-300 hover:scale-[1.02] hover:shadow-lg;
   background: linear-gradient(to right, var(--card), var(--card));
@@ -66,4 +69,7 @@
 @utility btn-outline {
   /* margin: 100px 0; */
   @apply border-primary border text-primary px-6 py-2 rounded-full font-medium transition-all duration-300 hover:shadow-[0_0_10px_rgba(139,246,92,0.5)];
+}
+@utility section {
+  @apply md:min-h-screen py-16 
 }
