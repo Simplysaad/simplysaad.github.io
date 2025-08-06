@@ -14,8 +14,8 @@ const projects = [
       "Gemini AI",
     ],
     repo: "https://github.com/simplysaad/BiographyHub",
-    live: "https://BiographyHub.onrender.com",
-    img: "https://placehold.co/400/green/white?text=BiographyHub",
+    live: "https://biographyHub.onrender.com",
+    img: "/IMG/biographyhub.jpg",
   },
   {
     title: "CentralMarket E-Commerce MERN App",
@@ -24,7 +24,7 @@ const projects = [
     tags: ["MongoDB", "Express", "React", "Node.js", "Paystack API"],
     repo: "https://github.com/simplysaad/centralmarket",
     live: "https://centralmarket.onrender.com",
-    img: "IMG/ecommerce-demo.png",
+    img: "/IMG/centralmarket.jpg",
   },
   {
     title: "short-en link shortener",
@@ -33,26 +33,26 @@ const projects = [
     tags: ["EJS", "Node.js", "Express"],
 
     repo: "https://github.com/simplysaad/short.en",
-    live: "https://short-en.onrender.com/",
-    img: "IMG/link-shortener.png",
+    live: "https://short-en-nine.vercel.app/",
+    img: "/IMG/link-shortener.png",
   },
-  {
-    title: "Aleeyah perfumes",
-    tags: ["HTML", "CSS", "javascript", "ES6+"],
-    description: "static website for a small business that deals in perfumes",
-    repo: "https://github.com/simplysaad/aleeyah-perfumes",
-    live: "https://simplysaad.github.io/aleeyah-perfumes",
-    img: "IMG/perfume.png",
-  },
-  {
-    title: "BetterFuture NGO",
-    tags: ["HTML", "CSS", "javascript", "ES6+"],
-    description:
-      "static website for an NGO that helps disabled individuals access meaningful education in africa",
-    repo: "https://github.com/simplysaad/betterfuture",
-    live: "https://simplysaad.github.io/betterfuture",
-    img: "IMG/disabled.png",
-  },
+  // {
+  //   title: "Aleeyah perfumes",
+  //   tags: ["HTML", "CSS", "javascript", "ES6+"],
+  //   description: "static website for a small business that deals in perfumes",
+  //   repo: "https://github.com/simplysaad/aleeyah-perfumes",
+  //   live: "https://simplysaad.github.io/aleeyah-perfumes",
+  //   img: "/IMG/perfume.png",
+  // },
+  // {
+  //   title: "BetterFuture NGO",
+  //   tags: ["HTML", "CSS", "javascript", "ES6+"],
+  //   description:
+  //     "static website for an NGO that helps disabled individuals access meaningful education in africa",
+  //   repo: "https://github.com/simplysaad/betterfuture",
+  //   live: "https://simplysaad.github.io/betterfuture",
+  //   img: "/IMG/disabled.png",
+  // },
   //, {
   //     title: "Real-time Chat App",
   //     description:

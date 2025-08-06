@@ -31,7 +31,7 @@ const AboutSection = () => {
             <a href="#contact" className="btn-primary">
               Get in Touch
             </a>
-            <a href="/saad-resume.pdf" download className="btn-outline">
+            <a href="/saad-resume.pdf" className="btn-outline">
               Download CV
             </a>
           </div>

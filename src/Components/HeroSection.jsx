@@ -19,7 +19,7 @@ const HeroSection = () => {
             applications tailored to client needs.
           </p>
         </div>
-        <a href="#projectSection" className="btn-primary">
+        <a href="#projectsSection" className="btn-primary">
           View my works
         </a>
       </div>

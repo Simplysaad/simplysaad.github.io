@@ -155,7 +155,7 @@ const SkillsSection = () => {
                 <h3 className="title capitalize font-semibold">{skill.name}</h3>
               </div>
 
-              <div className="w-full bg-primary/20 h-2 rounded-full overflow-hidden">
+              <div className="w-full bg-primary-foreground h-2 rounded-full overflow-hidden">
                 <div
                   className="bg-primary h-2 rounded-full origin-left"
                   style={{ width: skill.level + "%" }}
