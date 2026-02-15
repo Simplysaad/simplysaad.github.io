@@ -39,7 +39,7 @@
   }
 
   * {
-    @apply border-border;
+    /* @apply border; */
   }
   html {
     @apply scroll-smooth;
@@ -49,7 +49,6 @@
   }
 }
 
-/* Utility classes */
 
 @utility container {
   margin-inline: auto;
@@ -65,12 +64,10 @@
 }
 
 @utility btn-primary {
-  /* margin: 100px 0; */
-  @apply bg-primary text-primary-foreground px-6 py-2 rounded-full font-medium transition-all duration-300 hover:shadow-[0_0_10px_rgba(139,246,92,0.5)];
+  @apply bg-primary hover:bg-primary/70 hover:drop-shadow-2xl text-primary-foreground px-6 py-2 rounded-full font-medium transition-all duration-300 hover:shadow-[0_0_10px_rgba(139,246,92,0.5)];
 }
 @utility btn-outline {
-  /* margin: 100px 0; */
-  @apply border-primary border text-primary px-6 py-2 rounded-full font-medium transition-all duration-300 hover:shadow-[0_0_10px_rgba(139,246,92,0.5)];
+  @apply border-primary hover:bg-primary/70  hover:text-primary-foreground hover:drop-shadow-2xl border text-primary px-6 py-2 rounded-full font-medium transition-all duration-300 hover:shadow-[0_0_10px_rgba(139,246,92,0.5)];
 }
 @utility section {
   @apply md:min-h-screen py-16 
