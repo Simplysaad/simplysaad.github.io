@@ -1,186 +1,140 @@
-﻿
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  Server, Code2, Cpu, ArrowRight, Github,
-  Linkedin, ExternalLink, Mail, Terminal
-} from "lucide-react";
-import { clsx } from "clsx";
-import Navbar from "../components/Navbar";
-import projects from "../utils/projects";
-
-// --- Data ---
-const skills = [
-  { name: "Node.js", type: "backend", tag: "Runtime" },
-  { name: "Express.js", type: "backend", tag: "Server" },
-  { name: "MongoDB", type: "backend", tag: "NoSQL" },
-  { name: "React", type: "frontend", tag: "Hooks" },
-  { name: "Next.js", type: "frontend", tag: "SSR/SSG" },
-  { name: "TypeScript", type: "frontend", tag: "Typed" },
-  { name: "Tailwind", type: "frontend", tag: "Styling" },
-  { name: "Docker", type: "tools", tag: "DevOps" },
-  { name: "Git", type: "tools", tag: "VCS" },
-];
-
-// const projects = [
-//   {
-//     title: "BiographyHub AI Blog",
-//     description: "Automated content engine featuring AI-driven pipelines via Gemini and Twitter API synchronization.",
-//     tech: ["Next.js", "MongoDB", "Node.js", "Gemini AI"],
-//     repo: "https://github.com",
-//     live: "https://biographyHub.onrender.com",
-//     img: "/IMG/biographyhub.jpg",
-//   },
-//   {
-//     title: "CentralMarket E-Commerce",
-//     description: "Full-stack MERN platform with secure Paystack integration and a robust admin inventory dashboard.",
-//     tech: ["React", "Node.js", "Express", "MongoDB"],
-//     repo: "https://github.com",
-//     live: "https://centralmarket.onrender.com",
-//     img: "/IMG/centralmarket.jpg",
-//   }
-// ];
-
-// --- Components ---
-
-const SectionHeader = ({ title, highlight, subtitle }) => (
-  <div className="mb-16">
-    <motion.h2
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      className="text-4xl md:text-6xl font-bold tracking-tight"
-    >
-      {title} <span className="text-primary">{highlight}</span>
-    </motion.h2>
-    <p className="text-muted mt-4 max-w-xl text-lg">{subtitle}</p>
-  </div>
-);
+import React, { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
+import { gsap } from "gsap";
+import { Building2, Terminal, PenTool, ArrowRight } from "lucide-react";
 
 const Home = () => {
-  const [activeFilter, setActiveFilter] = useState("all");
+    const rootRef = useRef(null);
+    const cardsRef = useRef([]);
 
-  const filteredSkills = activeFilter === "all"
-    ? skills
-    : skills.filter(s => s.type === activeFilter);
+    useEffect(() => {
+        const ctx = gsap.context(() => {
+            // 1. Initial Entrance Animation
+            gsap.from(".hero-text", {
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                ease: "power4.out",
+                stagger: 0.2
+            });
 
-  return (
-    <div className="min-h-screen">
-      <Navbar/>
-      {/* 1. HERO SECTION */}
-      <section id="hero" className="section flex items-center pt-32 pb-20">
-        <div className="container grid lg:grid-cols-2 gap-12 items-center">
-          <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
-            <span className="text-primary font-mono mb-4 block tracking-widest uppercase text-sm">Full-Stack System Architect</span>
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-[1.1]">
-              Engineering <span className="text-primary">Scalable</span> Backend Ecosystems.
-            </h1>
-            <p className="text-lg text-muted mb-10 max-w-lg leading-relaxed">
-              Specializing in high-performance APIs and robust Node.js architectures. I build the digital engines that power seamless user experiences.
-            </p>
-            <div className="flex flex-wrap gap-6 items-center">
-              <a href="#projects" className="btn-primary flex items-center gap-2">View Systems <ArrowRight size={18} /></a>
-              <div className="flex gap-5 text-muted">
-                <a href="#" className="hover:text-primary transition-colors"><Github size={24} /></a>
-                <a href="#" className="hover:text-primary transition-colors"><Linkedin size={24} /></a>
-              </div>
+            gsap.from(cardsRef.current, {
+                y: 100,
+                opacity: 0,
+                duration: 0.8,
+                stagger: 0.15,
+                ease: "back.out(1.7)",
+                delay: 0.5
+            });
+        }, rootRef);
+
+        return () => ctx.revert();
+    }, []);
+
+    const onCardMouseEnter = (index) => {
+        gsap.to(cardsRef.current[index], {
+            borderColor: "var(--primary)",
+            y: -10,
+            duration: 0.3,
+            ease: "power2.out"
+        });
+        // Dim the other cards
+        cardsRef.current.forEach((card, i) => {
+            if (i !== index) gsap.to(card, { opacity: 0.4, duration: 0.3 });
+        });
+    };
+
+    const onCardMouseLeave = (index) => {
+        gsap.to(cardsRef.current[index], {
+            borderColor: "rgba(var(--border), 0.5)",
+            y: 0,
+            duration: 0.3
+        });
+        cardsRef.current.forEach((card) => gsap.to(card, { opacity: 1, duration: 0.3 }));
+    };
+
+    const navItems = [
+        {
+            title: "Civil Engineering",
+            icon: <Building2 size={32} />,
+            desc: "Designing the physical world with precision and structural logic.",
+            path: "/civil",
+            skills: ["Revit", "AutoCAD", "Structural Analysis"]
+        },
+        {
+            title: "Full-Stack Dev",
+            icon: <Terminal size={32} />,
+            desc: "Architecting high-performance digital systems and animations.",
+            path: "/dev",
+            skills: ["React", "Node.js", "GSAP"]
+        },
+        {
+            title: "Technical Writing",
+            icon: <PenTool size={32} />,
+            desc: "Translating complex technicality into clear, actionable narratives.",
+            path: "/writing",
+            skills: ["Documentation", "Blog Posts", "Whitepapers"]
+        }
+    ];
+
+    return (
+        <div ref={rootRef} className="min-h-screen bg-background flex flex-col items-center justify-center p-6 overflow-hidden">
+            {/* Background Decorative Grid */}
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
+                style={{ backgroundImage: 'radial-gradient(circle, #000 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+
+            {/* Hero Section */}
+            <div className="text-center mb-20 z-10">
+                <h1 className="hero-text text-6xl md:text-8xl font-bold tracking-tighter mb-4">
+                    SA'AD <span className="text-primary">.</span>
+                </h1>
+                <p className="hero-text text-muted text-lg md:text-xl max-w-2xl font-medium tracking-tight">
+                    A multi-disciplinary engineer building at the intersection of <br />
+                    <span className="text-foreground">infrastructure, code, and communication.</span>
+                </p>
             </div>
-          </motion.div>
-          <div className="hidden lg:flex justify-center relative opacity-20 hover:opacity-100 transition-opacity">
-            <Terminal size={400} strokeWidth={0.5} className="text-primary" />
-          </div>
-        </div>
-      </section>
 
-      {/* 2. SERVICES SECTION */}
-      <section className="section bg-card/10 border-y border-border/50">
-        <div className="container grid md:grid-cols-3 gap-8">
-          {[
-            { icon: <Server />, title: "Backend Architecture", desc: "Scalable microservices and secure RESTful/GraphQL API design." },
-            { icon: <Code2 />, title: "Frontend Engineering", desc: "Modern, reactive interfaces built with Next.js and Tailwind." },
-            { icon: <Cpu />, title: "System Optimization", desc: "Refactoring for speed, security, and 99.9% uptime reliability." }
-          ].map((s, i) => (
-            <motion.div key={i} whileHover={{ y: -5 }} className="p-8 rounded-2xl border border-border bg-card/40 backdrop-blur-sm">
-              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 text-primary">{s.icon}</div>
-              <h3 className="text-xl font-bold mb-3">{s.title}</h3>
-              <p className="text-muted text-sm leading-relaxed">{s.desc}</p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
+            {/* Main Trinity Navigation */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-6xl z-10">
+                {navItems.map((item, i) => (
+                    <Link
+                        key={i}
+                        to={item.path}
+                        ref={(el) => (cardsRef.current[i] = el)}
+                        onMouseEnter={() => onCardMouseEnter(i)}
+                        onMouseLeave={() => onCardMouseLeave(i)}
+                        className="group relative block p-10 rounded-3xl border border-border bg-card/20 backdrop-blur-md transition-colors"
+                    >
+                        <div className="text-primary mb-8 transition-transform group-hover:scale-110 duration-500">
+                            {item.icon}
+                        </div>
 
-      {/* 3. SKILLS SECTION */}
-      <section className="section" id="skills">
-        <div className="container">
-          <SectionHeader title="Technical" highlight="DNA" subtitle="A modern stack optimized for performance and security." />
-          <div className="flex gap-3 mb-10 overflow-x-auto pb-2">
-            {["all", "frontend", "backend", "tools"].map(f => (
-              <button
-                key={f}
-                onClick={() => setActiveFilter(f)}
-                className={clsx("btn-outline text-sm py-1.5 capitalize", activeFilter === f && "btn-primary border-primary")}
-              >
-                {f}
-              </button>
-            ))}
-          </div>
-          <motion.div layout className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
-            <AnimatePresence mode="popLayout">
-              {filteredSkills.map(skill => (
-                <motion.div
-                  layout initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} key={skill.name}
-                  className="card-hover p-5 rounded-xl border border-border text-center flex flex-col gap-1"
-                >
-                  <span className="font-bold text-foreground">{skill.name}</span>
-                  <span className="text-[10px] uppercase text-primary tracking-tighter font-mono">{skill.tag}</span>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </motion.div>
-        </div>
-      </section>
+                        <h2 className="text-3xl font-bold mb-4 tracking-tight">{item.title}</h2>
+                        <p className="text-muted text-sm leading-relaxed mb-8">
+                            {item.desc}
+                        </p>
 
-      {/* 4. PROJECTS SECTION */}
-      <section className="section bg-card/5" id="projects">
-        <div className="container">
-          <SectionHeader title="Featured" highlight="Deployments" subtitle="Production-ready systems with robust backend logic." />
-          <div className="grid gap-10">
-            {projects.map((p, i) => (
-              <motion.div
-                key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-                className="group flex flex-col md:flex-row gap-8 p-6 rounded-3xl border border-border bg-card/40 hover:bg-card/60 transition-all"
-              >
-                <div className="md:w-2/5 overflow-hidden rounded-2xl border border-border">
-                  <img src={p.img} alt={p.title} className="w-full h-full  group-hover:scale-100 transition-transform duration-500" />
-                </div>
-                <div className="md:w-3/5 flex flex-col justify-center">
-                  <h3 className="text-2xl font-bold mb-4">{p.title}</h3>
-                  <p className="text-muted mb-6 leading-relaxed">{p.description}</p>
-                  <div className="flex flex-wrap gap-2 mb-8">
-                    {p.tech.map(t => <span key={t} className="px-3 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded-full border border-primary/20">{t}</span>)}
-                  </div>
-                  <div className="flex gap-6">
-                    <a href={p.live} className="btn-primary text-xs py-2 flex items-center gap-2">Live Demo <ExternalLink size={14} /></a>
-                    <a href={p.repo} className="text-muted hover:text-primary transition-colors text-sm flex items-center gap-2 font-medium">Source <Github size={16} /></a>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+                        <div className="flex flex-wrap gap-2 mb-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            {item.skills.map(skill => (
+                                <span key={skill} className="text-[10px] font-bold uppercase tracking-widest px-2 py-1 border border-border rounded">
+                                    {skill}
+                                </span>
+                            ))}
+                        </div>
 
-      {/* 5. FOOTER / CONTACT */}
-      <footer id="contact" className="py-24 border-t border-border mt-20">
-        <div className="container text-center">
-          <h2 className="text-4xl md:text-6xl font-bold mb-8 tracking-tighter">Ready to <span className="text-primary">Architect</span> something?</h2>
-          <p className="text-muted mb-12 max-w-lg mx-auto">Currently open to freelance backend contracts and full-stack opportunities.</p>
-          <a href="mailto:your-email@example.com" className="btn-primary text-xl px-12 py-4 inline-flex items-center gap-3 shadow-xl shadow-primary/20">
-            Send a Message <Mail />
-          </a>
+                        <div className="flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-widest">
+                            Explore Route <ArrowRight size={16} />
+                        </div>
+                    </Link>
+                ))}
+            </div>
+
+            {/* Minimal Footer */}
+            <footer className="absolute bottom-10 text-[10px] uppercase tracking-[0.3em] text-muted/50 font-bold">
+                Build v1.0 // 2026 Edition
+            </footer>
         </div>
-      </footer>
-    </div>
-  );
+    );
 };
 
 export default Home;

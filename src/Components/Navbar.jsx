@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X, Terminal } from "lucide-react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { clsx } from "clsx";
 
 const Navbar = () => {
@@ -33,12 +33,12 @@ const Navbar = () => {
     >
       <div className="container flex justify-between items-center">
         {/* Logo with Terminal Icon for Backend Feel */}
-        <div className="flex items-center gap-2 text-xl font-bold tracking-tighter">
+        <Link to={"/"} className="flex items-center gap-2 text-xl font-bold tracking-tighter">
           <Terminal className="text-primary" size={20} />
           <span>
             Simply<span className="text-primary">Saad</span>
           </span>
-        </div>
+        </Link>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
