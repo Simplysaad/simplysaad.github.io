@@ -2,40 +2,42 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
     Ruler, HardHat, Construction, ArrowRight,
-    Linkedin, ExternalLink, Mail, FileText, Map
+    Linkedin, ExternalLink, Mail, FileText, Map, X, Box
 } from "lucide-react";
 import { clsx } from "clsx";
 import Navbar from "../components/Navbar";
 
-// --- Mock Data for Civil Engineering ---
 const engineeringSkills = [
-    { name: "AutoCAD", type: "design", tag: "2D/3D Drafting" },
-    { name: "Revit", type: "design", tag: "BIM Modeling" },
-    { name: "Civil 3D", type: "design", tag: "Land Dev" },
-    { name: "SAP2000", type: "analysis", tag: "Structural" },
-    { name: "STAAD.Pro", type: "analysis", tag: "Finite Element" },
-    { name: "Microsoft Project", type: "management", tag: "Scheduling" },
-    { name: "Cost Estimation", type: "management", tag: "Budgeting" },
-    { name: "Site Supervision", type: "field", tag: "Operations" },
-    { name: "Surveying", type: "field", tag: "Geomatics" },
+    { name: "FreeCAD", type: "design", tag: "BIM & Parts Assembly" },
+    { name: "AutoCAD", type: "design", tag: "2D Layouts & Drafting" },
+    { name: "Finite Element Analysis", type: "analysis", tag: "FEA Concepts" },
+    { name: "Structural Analysis", type: "analysis", tag: "Load Logic" },
+    { name: "Python / JS", type: "software", tag: "Engineering Automation" },
+    { name: "React & Node.js", type: "software", tag: "Web Tooling" },
+    { name: "Survey Data", type: "field", tag: "Geomatics" },
+    { name: "Site Operations", type: "field", tag: "SIWES Training" }
 ];
 
+// --- Featured Engineering Projects ---
 const engineeringProjects = [
     {
-        title: "Urban Drainage System Redesign",
-        description: "Designed a sustainable urban drainage system (SuDS) to mitigate seasonal flooding in a high-density residential area, improving runoff efficiency by 40%.",
-        tech: ["Civil 3D", "Hydrology Analysis", "AutoCAD"],
-        img: "https://images.unsplash.com/photo-1590483734724-38fa19744980?q=80&w=1000", // Placeholder
-        live: "#",
-        doc: "#"
+        title: "Wind Turbine Mechanical Drive Assembly",
+        description: "3D parametric modeling and assembly simulation using FreeCAD Assembly Workbench. Modeled rotor hub, blade attachments, square shaft, and support frame, evaluating gear mesh alignments and joint constraints.",
+        tech: ["FreeCAD", "Assembly Workbench", "Parametric Design", "Kinematics"],
+        // model: "/models/wind_turbine_assembly.html",
+        model: "/models/Wind_turbine_assembly-Direct_drive.html",
+        img: "/models/wind_turbine_assembly.png",
+        doc: "/docs/wind_turbine_assembly.pdf",
+        live: null
     },
     {
-        title: "Multi-Storey Steel Frame Analysis",
-        description: "Structural modeling and load calculation for a 5-storey commercial complex, ensuring compliance with Eurocode 3 standards.",
-        tech: ["SAP2000", "Structural Logic", "Technical Reporting"],
-        img: "https://images.unsplash.com/photo-1541888946425-d81bb19480c5?q=80&w=1000", // Placeholder
-        live: "#",
-        doc: "#"
+        title: "Geared Drive Transmission Mechanism",
+        description: "Precision mechanical gear assembly modeling in FreeCAD to test driver and driven gear rotational motion, shaft alignment, and enclosure tolerances.",
+        tech: ["FreeCAD", "Gear Workbench", "Assembly Constraints", "Kinematics"],
+        model: "/models/geared_drive_assembly.html",
+        img: "/models/geared_drive_assembly.png",
+        doc: "/docs/geared_drive_assembly.pdf",
+        live: null
     }
 ];
 
@@ -45,6 +47,7 @@ const SectionHeader = ({ title, highlight, subtitle }) => (
         <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             className="text-4xl md:text-6xl font-bold tracking-tight"
         >
             {title} <span className="text-primary">{highlight}</span>
@@ -55,13 +58,14 @@ const SectionHeader = ({ title, highlight, subtitle }) => (
 
 const CivilEngineering = () => {
     const [activeFilter, setActiveFilter] = useState("all");
+    const [selectedModel, setSelectedModel] = useState(null);
 
     const filteredSkills = activeFilter === "all"
         ? engineeringSkills
         : engineeringSkills.filter(s => s.type === activeFilter);
 
     return (
-        <div className="min-h-screen">
+        <div className="min-h-screen bg-background text-foreground">
             <Navbar />
 
             {/* 1. HERO SECTION */}
@@ -72,14 +76,20 @@ const CivilEngineering = () => {
                         <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-[1.1]">
                             Building the <span className="text-primary">Physical</span> Foundation.
                         </h1>
-                        <p className="text-lg text-muted mb-10 max-w-lg leading-relaxed">
-                            Civil Engineering student with a focus on structural integrity and modern BIM workflows. I design the sustainable spaces that shape our future.
+                        <p className="text-muted mb-10 max-w-lg text-lg leading-relaxed">
+                            Civil Engineering student with a focus on structural integrity and modern BIM workflows. I design sustainable physical infrastructure and digital engineering tools.
                         </p>
                         <div className="flex flex-wrap gap-6 items-center">
-                            <a href="#projects" className="btn-primary flex items-center gap-2">View Projects <ArrowRight size={18} /></a>
+                            <a href="#projects" className="btn-primary flex items-center gap-2">
+                                View Projects <ArrowRight size={18} />
+                            </a>
                             <div className="flex gap-5 text-muted">
-                                <a target="_blank" href="#" className="hover:text-primary transition-colors"><FileText size={24} /></a>
-                                <a target="_blank" href="https://linkedin.com/in/saad-idris-350271303" className="hover:text-primary transition-colors"><Linkedin size={24} /></a>
+                                <a target="_blank" rel="noreferrer" href="/resume/SAAD_IDRIS_FULL_STACK_DEV_RESUME.pdf" className="hover:text-primary transition-colors" title="Download Resume">
+                                    <FileText size={24} />
+                                </a>
+                                <a target="_blank" rel="noreferrer" href="https://linkedin.com/in/simplysaad" className="hover:text-primary transition-colors" title="LinkedIn Profile">
+                                    <Linkedin size={24} />
+                                </a>
                             </div>
                         </div>
                     </motion.div>
@@ -93,9 +103,9 @@ const CivilEngineering = () => {
             <section className="section bg-card/10 border-y border-border/50">
                 <div className="container grid md:grid-cols-3 gap-8">
                     {[
-                        { icon: <Construction />, title: "Structural Design", desc: "Developing rigorous blueprints for safe and efficient load-bearing structures." },
-                        { icon: <Map />, title: "BIM Coordination", desc: "Utilizing Revit and Civil 3D for integrated architectural and engineering workflows." },
-                        { icon: <HardHat />, title: "Project Management", desc: "Liaising with on-site teams to ensure adherence to safety, budget, and timeline." }
+                        { icon: <Construction />, title: "Structural Design", desc: "Developing rigorous blueprints and 3D parametric models for safe load-bearing structures." },
+                        { icon: <Map />, title: "BIM & CAD Workflows", desc: "Utilizing FreeCAD and AutoCAD for integrated 2D drafting, 3D assembly, and spatial design." },
+                        { icon: <HardHat />, title: "Site Operations", desc: "Applying practical field engineering principles, soil testing, and construction management." }
                     ].map((s, i) => (
                         <motion.div key={i} whileHover={{ y: -5 }} className="p-8 rounded-2xl border border-border bg-card/40 backdrop-blur-sm">
                             <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 text-primary">{s.icon}</div>
@@ -109,13 +119,13 @@ const CivilEngineering = () => {
             {/* 3. SKILLS SECTION */}
             <section className="section" id="skills">
                 <div className="container">
-                    <SectionHeader title="Engineering" highlight="Toolkit" subtitle="Specialized software and technical proficiencies for modern construction." />
+                    <SectionHeader title="Engineering" highlight="Toolkit" subtitle="Specialized software and technical proficiencies for structural design and web tools." />
                     <div className="flex gap-3 mb-10 overflow-x-auto pb-2">
-                        {["all", "design", "analysis", "management", "field"].map(f => (
+                        {["all", "design", "analysis", "software", "field"].map(f => (
                             <button
                                 key={f}
                                 onClick={() => setActiveFilter(f)}
-                                className={clsx("btn-outline text-sm py-1.5 capitalize", activeFilter === f && "btn-primary border-primary")}
+                                className={clsx("btn-outline text-sm py-1.5 capitalize transition-all", activeFilter === f && "btn-primary border-primary")}
                             >
                                 {f}
                             </button>
@@ -125,8 +135,12 @@ const CivilEngineering = () => {
                         <AnimatePresence mode="popLayout">
                             {filteredSkills.map(skill => (
                                 <motion.div
-                                    layout initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} key={skill.name}
-                                    className="card-hover p-5 rounded-xl border border-border text-center flex flex-col gap-1"
+                                    layout
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    exit={{ opacity: 0, scale: 0.9 }}
+                                    key={skill.name}
+                                    className="p-5 rounded-xl border border-border bg-card/30 text-center flex flex-col gap-1 hover:border-primary/50 transition-colors"
                                 >
                                     <span className="font-bold text-foreground">{skill.name}</span>
                                     <span className="text-[10px] uppercase text-primary tracking-tighter font-mono">{skill.tag}</span>
@@ -140,25 +154,56 @@ const CivilEngineering = () => {
             {/* 4. PROJECTS SECTION */}
             <section className="section bg-card/5" id="projects">
                 <div className="container">
-                    <SectionHeader title="Design" highlight="Portfolio" subtitle="Case studies in structural analysis and urban development." />
+                    <SectionHeader title="Design" highlight="Portfolio" subtitle="Parametric assemblies, structural models, and technical calculations." />
                     <div className="grid gap-10">
                         {engineeringProjects.map((p, i) => (
                             <motion.div
-                                key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+                                key={i}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
                                 className="group flex flex-col md:flex-row gap-8 p-6 rounded-3xl border border-border bg-card/40 hover:bg-card/60 transition-all"
                             >
-                                <div className="md:w-2/5 overflow-hidden rounded-2xl border border-border bg-slate-200">
+                                <div className="md:w-2/5 overflow-hidden rounded-2xl border border-border bg-slate-900 relative group/img">
                                     <img src={p.img} alt={p.title} className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" />
+                                    {p.model && (
+                                        <button
+                                            onClick={() => setSelectedModel(p)}
+                                            className="absolute inset-0 bg-black/60 opacity-0 group-hover/img:opacity-100 flex items-center justify-center gap-2 text-white font-medium transition-opacity backdrop-blur-xs"
+                                        >
+                                            <Box size={20} /> Preview 3D Model
+                                        </button>
+                                    )}
                                 </div>
                                 <div className="md:w-3/5 flex flex-col justify-center">
                                     <h3 className="text-2xl font-bold mb-4">{p.title}</h3>
                                     <p className="text-muted mb-6 leading-relaxed">{p.description}</p>
                                     <div className="flex flex-wrap gap-2 mb-8">
-                                        {p.tech.map(t => <span key={t} className="px-3 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded-full border border-primary/20">{t}</span>)}
+                                        {p.tech.map(t => (
+                                            <span key={t} className="px-3 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded-full border border-primary/20">
+                                                {t}
+                                            </span>
+                                        ))}
                                     </div>
-                                    <div className="flex gap-6">
-                                        <a target="_blank" href={p.live} className="btn-primary text-xs py-2 flex items-center gap-2">View Details <ExternalLink size={14} /></a>
-                                        <a target="_blank" href={p.doc} className="text-muted hover:text-primary transition-colors text-sm flex items-center gap-2 font-medium">Project Documentation <FileText size={16} /></a>
+                                    <div className="flex flex-wrap gap-4 items-center">
+                                        {p.model && (
+                                            <button
+                                                onClick={() => setSelectedModel(p)}
+                                                className="btn-primary text-xs py-2 flex items-center gap-2"
+                                            >
+                                                Interactive 3D View <Box size={14} />
+                                            </button>
+                                        )}
+                                        {p.live && (
+                                            <a target="_blank" rel="noreferrer" href={p.live} className="btn-outline text-xs py-2 flex items-center gap-2">
+                                                Live Project <ExternalLink size={14} />
+                                            </a>
+                                        )}
+                                        {p.doc && (
+                                            <a target="_blank" rel="noreferrer" href={p.doc} className="text-muted hover:text-primary transition-colors text-sm flex items-center gap-2 font-medium">
+                                                Documentation <FileText size={16} />
+                                            </a>
+                                        )}
                                     </div>
                                 </div>
                             </motion.div>
@@ -167,12 +212,49 @@ const CivilEngineering = () => {
                 </div>
             </section>
 
+            {/* 3D MODEL VIEW MODAL */}
+            <AnimatePresence>
+                {selectedModel && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 md:p-8"
+                    >
+                        <div className="bg-card border border-border w-full max-w-5xl h-[80vh] rounded-2xl flex flex-col overflow-hidden shadow-2xl relative">
+                            <div className="p-4 border-b border-border flex justify-between items-center bg-card/80">
+                                <h3 className="font-bold text-lg flex items-center gap-2">
+                                    <Box className="text-primary" size={20} /> {selectedModel.title} (3D WebGL View)
+                                </h3>
+                                <button
+                                    onClick={() => setSelectedModel(null)}
+                                    className="p-1 rounded-lg hover:bg-muted/20 text-muted hover:text-foreground transition-colors"
+                                >
+                                    <X size={24} />
+                                </button>
+                            </div>
+                            <div className="flex-1 w-full h-full bg-slate-950">
+                                <iframe
+                                    src={selectedModel.model}
+                                    title={selectedModel.title}
+                                    className="w-full h-full border-none"
+                                />
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
             {/* 5. FOOTER / CONTACT */}
             <footer id="contact" className="py-24 border-t border-border mt-20">
                 <div className="container text-center">
-                    <h2 className="text-4xl md:text-6xl font-bold mb-8 tracking-tighter">Have a <span className="text-primary">Project</span> in Mind?</h2>
-                    <p className="text-muted mb-12 max-w-lg mx-auto">Currently seeking internships and collaboration on infrastructure projects.</p>
-                    <a target="_blank" href="mailto:saadidris23@gmail.com" className="btn-primary text-xl px-12 py-4 inline-flex items-center gap-3 shadow-xl shadow-primary/20">
+                    <h2 className="text-4xl md:text-6xl font-bold mb-8 tracking-tighter">
+                        Have a <span className="text-primary">Project</span> in Mind?
+                    </h2>
+                    <p className="text-muted mb-12 max-w-lg mx-auto">
+                        Seeking engineering internships, CAD/BIM modeling tasks, and Web/Software collaborations.
+                    </p>
+                    <a target="_blank" rel="noreferrer" href="mailto:saadidris23@gmail.com" className="btn-primary text-xl px-12 py-4 inline-flex items-center gap-3 shadow-xl shadow-primary/20">
                         Let's Collaborate <Mail />
                     </a>
                 </div>
