@@ -31,6 +31,15 @@ const engineeringProjects = [
         live: null
     },
     {
+        title: "Digital Twin Structural Health Monitoring System",
+        description: "A real-time structural health monitoring solution integrating physical IoT sensor arrays placed at critical stress points with a parametric 3D digital twin to visualize live structural data and strain metrics.",
+        tech: ["FreeCAD", "WebGL", "Three.js", "IoT Sensors", "Parametric Modeling"],
+        model: "/models/digital_twin.html",
+        img: "/models/digital_twin.png",
+        doc: "/docs/digital_twin.pdf",
+        live: null
+    },
+    {
         title: "Geared Drive Transmission Mechanism",
         description: "Precision mechanical gear assembly modeling in FreeCAD to test driver and driven gear rotational motion, shaft alignment, and enclosure tolerances.",
         tech: ["FreeCAD", "Gear Workbench", "Assembly Constraints", "Kinematics"],
